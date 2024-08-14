@@ -1,5 +1,12 @@
-pandas
-numpy
-scikit-learn
-matplotlib
-pytz
+percentage 10
+
+Acur cia: 0.6975404732254047
+Precis o: 0.006749740394600207
+Recall: 0.3023255813953488
+F1-Score: 0.013204672422549517
+
+Std 4 
+Acur cia: 0.8659713574097135
+Precis o: 0.008413461538461538
+Recall: 0.16279069767441862
+F1-Score: 0.016

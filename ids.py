@@ -20,9 +20,8 @@ def percentage_prediction(data, window_size, threshold_percentage):
     data['predict_p/s'] = calculate_wma(data['packets/s'], window_size)
     # Calcular limiares com base no na porcentagem de limiar
     upper_threshold = data['predict_p/s'] + (data['predict_p/s'] * threshold_percentage / 100)
-    lower_threshold = data['predict_p/s'] - (data['predict_p/s'] * threshold_percentage / 100)
     # Adicionar a coluna de previsão
-    data['predict-label'] = np.where((data['packets/s'] > upper_threshold) | (data['packets/s'] < lower_threshold), 1, 0)
+    data['predict-label'] = np.where((data['packets/s'] > upper_threshold), 1, 0)
     return data
 
 def std_prediction(data, window_size, threshold_factor=2):
@@ -31,16 +30,15 @@ def std_prediction(data, window_size, threshold_factor=2):
     std_dev = data['predict_p/s'].rolling(window=window_size, min_periods=1).std()
     # Limiar superior e inferior com base no desvio padrão
     upper_threshold = data['predict_p/s']  + threshold_factor * std_dev
-    lower_threshold = data['predict_p/s']  - threshold_factor * std_dev
     # Adicionar a coluna de previsão
-    data['predict-label'] = np.where((data['packets/s'] > upper_threshold) | (data['packets/s'] < lower_threshold), 1, 0)
+    data['predict-label'] = np.where((data['packets/s'] > upper_threshold), 1, 0)
     return data
 
 # Calcular a previsão por porcentagem
-# data = percentage_prediction(data.copy(), window_size=10, threshold_percentage=10)
+data = percentage_prediction(data.copy(), window_size=10, threshold_percentage=10)
 
 # Calcular a previsão por desvio padrão
-data = std_prediction(data.copy(), window_size=10, threshold_factor=2)
+# data = std_prediction(data.copy(), window_size=10, threshold_factor=4)
 
 # Calcular a matriz de confusão
 y_true = data['real-label']

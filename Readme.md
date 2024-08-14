@@ -93,15 +93,13 @@ onde \( w_i \) são os pesos e \( v_i \) são os valores da série de dados.
 
     - **Definição Percentual**:
 
-      - **Limiares Inferior**: 90% do valor previsto pelo WMA.
-      - **Limiares Superior**: 110% do valor previsto pelo WMA.
+      - **Limiar Superior**: 110% do valor previsto pelo WMA.
 
       Limiares de 10% proporcionam um equilíbrio razoável entre detectar ataques reais e evitar a classificação errônea de comportamentos normais como ataques.
 
     - **Definição por Desvio Padrão**:
 
-      - **Limiares Inferior**: Valor previsto pelo WMA menos o desvio padrão da janela deslizante multiplicado por um fator(2).
-      - **Limiares Superior**: Valor previsto pelo WMA mais o desvio padrão da janela deslizante multiplicado por um fator(2).
+      - **Limiar Superior**: Valor previsto pelo WMA mais o desvio padrão da janela deslizante multiplicado por um fator(4).
 
       A abordagem baseada em desvio padrão ajusta os limiares de acordo com a variabilidade dos dados, oferecendo maior flexibilidade para capturar variações na série temporal e adaptar-se a comportamentos anômalos. O fator utilizado na multiplicação do desvio padrão pode ser ajustado conforme a necessidade para melhorar a detecção de ataques e reduzir falsos positivos.
 
